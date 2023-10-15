@@ -1,6 +1,7 @@
 package math.teaser;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Random;
@@ -13,7 +14,7 @@ public class MathTeaser {
     }
 
     public void tease() {
-        try (InputStreamReader ir = new InputStreamReader(new BufferedInputStream(System.in))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
 
             final Random random = new Random();
             boolean showExpression = true;
@@ -21,11 +22,10 @@ public class MathTeaser {
             int number2 = 0;
             int operation = 0;
             int result = 0;
-
             do {
                 if (showExpression) {
-                    number1 = generateNumber(random, 99, 10);
-                    number2 = generateNumber(random, 99, 10 );
+                    number1 = generateNumber(random, 139, 10);
+                    number2 = generateNumber(random, 139, 10 );
                     operation = random.nextInt(4);
                     switch (operation) {
                         case 0:
@@ -37,8 +37,8 @@ public class MathTeaser {
                             System.out.print(number1 + " - " + number2 + " = ");
                             break;
                         case 2:
-                            number1 = generateNumber(random, 15, 6 );
-                            number2 = generateNumber(random, 15, 4 );
+                            number1 = generateNumber(random, 18, 6 );
+                            number2 = generateNumber(random, 18, 4 );
                             result = multiply(number1, number2);
                             System.out.print(number1 + " * " + number2 + " = ");
                             break;
@@ -77,7 +77,7 @@ public class MathTeaser {
                     showExpression = true;
                 }
 
-            } while (ir.read() != 'q');
+            } while (br.read() != 'q');
 
         } catch (IOException e) {
             System.out.println(e);
