@@ -44,21 +44,14 @@ public class MathTeaser {
                             break;
                         case 3:
                             number1 = generateNumber(random, 90, 10 );
-                            for (int i = 0; i < 15; i++) {
-                                number2 = generateNumber(random, 8, 2);
-                                if (number1 % number2 == 0) {
-                                   break;
-                                }
-                            }
-
-                            if (modulus(number1, number2) != 0) {
-                                result = modulus(number1, number2);
-                                System.out.print(number1 + " % " + number2 + " = ");
+                            number2 = generateNumber(random, 8, 2);
+                            final int modulus = modulus(number1, number2);
+                            if (modulus != 0) {
+                                result = division(number1 - modulus, number2);
                             } else {
                                 result = division(number1, number2);
-                                System.out.print(number1 + " / " + number2 + " = ");
                             }
-
+                            System.out.print(number1 + " / " + number2 + " = ");
                             break;
                         case 4:
                             number1 = convert(random, 7, 9);
@@ -84,8 +77,9 @@ public class MathTeaser {
                             System.out.print(number1 + " * " + number2 + " = " + result + "\n");
                             break;
                         case 3:
-                            if (modulus(number1, number2) != 0) {
-                                System.out.print(number1 + " % " + number2 + " = " + result + "\n");
+                            final int modulus = modulus(number1, number2);
+                            if (modulus != 0) {
+                                System.out.print(number1 + " / " + number2 + " = " + result + "; remainder = " + modulus + "\n");
                             } else {
                                 System.out.print(number1 + " / " + number2 + " = " + result + "\n");
                             }
