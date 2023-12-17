@@ -1,19 +1,82 @@
 package math.teaser;
 
+import math.teaser.number.SMRandomNumber;
+import math.teaser.operation.MathOperation;
+import math.teaser.operation.SMOperation;
+import pl.allegro.finance.tradukisto.ValueConverters;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.time.LocalTime;
 import java.util.Random;
 
+import static math.teaser.operation.MathOperationType.*;
+import static pl.allegro.finance.tradukisto.ValueConverters.*;
+
 public class MathTeaser {
-    
+
+    private static final MathOperation[] mathOperations = {
+            new MathOperation(PLUS, 30, 1),
+            new MathOperation(MINUS, 30, 1),
+            new MathOperation(MULTIPLY, 8, 2)
+    };
+    private static final ValueConverters[] valueConverters = {ENGLISH_INTEGER, RUSSIAN_INTEGER, UKRAINIAN_INTEGER};
+    private static final Random random = new Random();
+
+
     public static void main(String[] args) {
-        
         new MathTeaser().tease();
     }
 
-    public void tease() {
+    private void tease() {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+            boolean showResult = false;
+            SMExpression expression = null;
+
+            do {
+                if (!showResult) {
+                    expression = calculate();
+                    System.out.print(expression.getRepresentation() + " = ");
+                    showResult = true;
+                } else {
+                    System.out.println(expression.getRepresentation() + " = " + expression.getResult());
+                    showResult = false;
+                }
+            } while (br.read() != 'q');
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public SMExpression calculate() {
+        int languageSelector = random.nextInt(valueConverters.length);
+        int operationSelector = random.nextInt(mathOperations.length);
+        final MathOperation mathOperation = mathOperations[operationSelector];
+
+        return new SMExpression(
+                new SMRandomNumber(random, mathOperation.getNumberBound(), mathOperation.getNumberOffset(),
+                        random.nextBoolean() ? valueConverters[languageSelector] : null),
+                new SMRandomNumber(random, mathOperation.getNumberBound(), mathOperation.getNumberOffset(),
+                        random.nextBoolean() ? valueConverters[languageSelector] : null),
+                new SMOperation(mathOperation.getType(), null)
+        );
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
 
             final Random random = new Random();
@@ -151,4 +214,7 @@ public class MathTeaser {
     private int modulus(int number1, int number2) {
         return number1 % number2;
     }
+
+ */
+
 }
