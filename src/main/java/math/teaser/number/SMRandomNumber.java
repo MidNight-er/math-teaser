@@ -9,8 +9,8 @@ public class SMRandomNumber {
     private final int number;
     private final ValueConverters textRepresentation;
 
-    public SMRandomNumber(Random random, int numberBound, int offset, ValueConverters textRepresentation) {
-        number = random.nextInt(numberBound) + offset;
+    public SMRandomNumber(Random random, int numberBound, ValueConverters textRepresentation) {
+        number = random.nextInt(1, numberBound);
         this.textRepresentation = textRepresentation;
     }
 

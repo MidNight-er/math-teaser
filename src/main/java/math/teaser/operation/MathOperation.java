@@ -3,24 +3,24 @@ package math.teaser.operation;
 public class MathOperation {
 
     private final MathOperationType type;
-    private final int numberBound;
-    private final int numberOffset;
+    private final int firstNumberBound;
+    private final int secondNUmberBound;
 
-    public MathOperation(MathOperationType type, int numberBound, int numberOffset) {
+    public MathOperation(MathOperationType type, int firstNumberBound, int secondNUmberBound) {
         this.type = type;
-        this.numberBound = numberBound;
-        this.numberOffset = numberOffset;
+        this.firstNumberBound = firstNumberBound;
+        this.secondNUmberBound = secondNUmberBound;
     }
 
     public MathOperationType getType() {
         return type;
     }
 
-    public int getNumberBound() {
-        return numberBound;
+    public int getFirstNumberBound() {
+        return firstNumberBound;
     }
 
-    public int getNumberOffset() {
-        return numberOffset;
+    public int getSecondNumberBound() {
+        return secondNUmberBound;
     }
 }

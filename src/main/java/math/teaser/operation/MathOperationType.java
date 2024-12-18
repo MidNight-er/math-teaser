@@ -2,22 +2,34 @@ package math.teaser.operation;
 
 public enum MathOperationType {
 
-    PLUS("+") {
+    ADDITION("+") {
         @Override
         public int apply(int number1, int number2) {
             return Math.addExact(number1, number2);
         }
     },
-    MINUS("-") {
+    SUBTRACTION("-") {
         @Override
         public int apply(int number1, int number2) {
             return Math.subtractExact(number1, number2);
         }
     },
-    MULTIPLY("*") {
+    MULTIPLICATION("*") {
         @Override
         public int apply(int number1, int number2) {
             return Math.multiplyExact(number1, number2);
+        }
+    },
+    DIVISION("/") {
+        @Override
+        public int apply(int number1, int number2) {
+            return Math.divideExact(number1, number2);
+        }
+    },
+    REMINDER("%") {
+        @Override
+        public int apply(int number1, int number2) {
+            return number1 % number2;
         }
     };
 

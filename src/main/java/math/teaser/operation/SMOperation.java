@@ -11,7 +11,6 @@ public class SMOperation {
     }
 
     public String getRepresentation() {
-        // TODO add language representation
         return String.valueOf(mathOperationType.getRepresentation());
     }
 
