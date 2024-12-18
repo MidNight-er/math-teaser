@@ -19,8 +19,7 @@ public class MathTeaser {
             new MathOperation(ADDITION, 1000, 1000),
             new MathOperation(SUBTRACTION, 1000, 1000),
             new MathOperation(MULTIPLICATION, 20, 10),
-            new MathOperation(DIVISION, 100, 10),
-            new MathOperation(REMINDER, 100, 10)
+            new MathOperation(DIVISION, 100, 10)
     };
 
     private static final ValueConverters[] valueConverters = {ENGLISH_INTEGER, RUSSIAN_INTEGER, POLISH_INTEGER};

@@ -4,32 +4,31 @@ public enum MathOperationType {
 
     ADDITION("+") {
         @Override
-        public int apply(int number1, int number2) {
-            return Math.addExact(number1, number2);
+        public String apply(int number1, int number2) {
+            return String.valueOf(Math.addExact(number1, number2));
         }
     },
     SUBTRACTION("-") {
         @Override
-        public int apply(int number1, int number2) {
-            return Math.subtractExact(number1, number2);
+        public String apply(int number1, int number2) {
+            return String.valueOf(Math.subtractExact(number1, number2));
         }
     },
     MULTIPLICATION("*") {
         @Override
-        public int apply(int number1, int number2) {
-            return Math.multiplyExact(number1, number2);
+        public String apply(int number1, int number2) {
+            return String.valueOf(Math.multiplyExact(number1, number2));
         }
     },
     DIVISION("/") {
         @Override
-        public int apply(int number1, int number2) {
-            return Math.divideExact(number1, number2);
-        }
-    },
-    REMINDER("%") {
-        @Override
-        public int apply(int number1, int number2) {
-            return number1 % number2;
+        public String apply(int number1, int number2) {
+            if (number1 < number2 || number1 % number2 == 0) {
+                return String.valueOf(Math.divideExact(number1, number2));
+            } else {
+                int remainder = number1 % number2;
+                return Math.divideExact(number1 - remainder, number2) + "R" + remainder;
+            }
         }
     };
 
@@ -39,7 +38,7 @@ public enum MathOperationType {
         this.representation = representation;
     }
 
-    public abstract int apply(int number1, int number2);
+    public abstract String apply(int number1, int number2);
 
     public String getRepresentation() {
         return representation;

@@ -10,7 +10,7 @@ public class SMRandomNumber {
     private final ValueConverters textRepresentation;
 
     public SMRandomNumber(Random random, int numberBound, ValueConverters textRepresentation) {
-        number = random.nextInt(1, numberBound);
+        number = random.nextInt(2, numberBound);
         this.textRepresentation = textRepresentation;
     }
 

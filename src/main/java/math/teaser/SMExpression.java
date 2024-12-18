@@ -16,7 +16,7 @@ public class SMExpression {
         this.operation = operation;
     }
 
-    public int getResult() {
+    public String getResult() {
         MathOperationType mathOperationType = operation.getMathOperation();
         return mathOperationType.apply(number1.getNumber(), number2.getNumber());
     }
