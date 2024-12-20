@@ -4,12 +4,14 @@ public class MathOperation {
 
     private final MathOperationType type;
     private final int firstNumberBound;
-    private final int secondNUmberBound;
+    private final int secondNumberBound;
+    private final boolean isRandomRepresented;
 
-    public MathOperation(MathOperationType type, int firstNumberBound, int secondNUmberBound) {
+    public MathOperation(MathOperationType type, int firstNumberBound, int secondNumberBound, boolean isRandomRepresented) {
         this.type = type;
         this.firstNumberBound = firstNumberBound;
-        this.secondNUmberBound = secondNUmberBound;
+        this.secondNumberBound = secondNumberBound;
+        this.isRandomRepresented = isRandomRepresented;
     }
 
     public MathOperationType getType() {
@@ -21,6 +23,10 @@ public class MathOperation {
     }
 
     public int getSecondNumberBound() {
-        return secondNUmberBound;
+        return secondNumberBound;
+    }
+
+    public boolean isRandomRepresented() {
+        return isRandomRepresented;
     }
 }

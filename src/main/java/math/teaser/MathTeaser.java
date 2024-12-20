@@ -16,10 +16,10 @@ import static pl.allegro.finance.tradukisto.ValueConverters.*;
 public class MathTeaser {
 
     private static final MathOperation[] mathOperations = {
-            new MathOperation(ADDITION, 1000, 1000),
-            new MathOperation(SUBTRACTION, 1000, 1000),
-            new MathOperation(MULTIPLICATION, 20, 10),
-            new MathOperation(DIVISION, 100, 10)
+            new MathOperation(ADDITION, 1000, 1000, true),
+            new MathOperation(SUBTRACTION, 1000, 1000, true),
+            new MathOperation(MULTIPLICATION, 20, 10, true),
+            new MathOperation(DIVISION, 100, 10, true)
     };
 
     private static final ValueConverters[] valueConverters = {ENGLISH_INTEGER, RUSSIAN_INTEGER, POLISH_INTEGER};
@@ -53,12 +53,13 @@ public class MathTeaser {
         int languageSelector = random.nextInt(valueConverters.length);
         int operationSelector = random.nextInt(mathOperations.length);
         final MathOperation mathOperation = mathOperations[operationSelector];
+        boolean isRepresentationChanged = mathOperation.isRandomRepresented() && random.nextBoolean();
 
         return new SMExpression(
                 new SMRandomNumber(random, mathOperation.getFirstNumberBound(),
-                        random.nextBoolean() ? valueConverters[languageSelector] : null),
+                        isRepresentationChanged ? valueConverters[languageSelector] : null),
                 new SMRandomNumber(random, mathOperation.getSecondNumberBound(),
-                        random.nextBoolean() ? valueConverters[languageSelector] : null),
+                        isRepresentationChanged ? valueConverters[languageSelector] : null),
                 new SMOperation(mathOperation.getType(), null)
         );
     }
