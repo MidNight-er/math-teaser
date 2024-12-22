@@ -19,7 +19,7 @@ public class MathTeaser {
             new MathOperation(ADDITION, 1000, 1000, true),
             new MathOperation(SUBTRACTION, 1000, 1000, true),
             new MathOperation(MULTIPLICATION, 20, 10, true),
-            new MathOperation(DIVISION, 100, 10, true)
+            new MathOperation(DIVISION, 150, 10, true)
     };
 
     private static final ValueConverters[] valueConverters = {ENGLISH_INTEGER, RUSSIAN_INTEGER, POLISH_INTEGER};
@@ -38,22 +38,21 @@ public class MathTeaser {
                 if (!showResult) {
                     expression = calculate();
                     System.out.print(expression.getRepresentation() + " = ");
-                    showResult = true;
                 } else {
                     System.out.println(expression.getRepresentation() + " = " + expression.getResult());
-                    showResult = false;
                 }
+                showResult = !showResult;
             } while (br.read() != 'q');
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public SMExpression calculate() {
-        int languageSelector = random.nextInt(valueConverters.length);
-        int operationSelector = random.nextInt(mathOperations.length);
+    private SMExpression calculate() {
+        final int languageSelector = random.nextInt(valueConverters.length);
+        final int operationSelector = random.nextInt(mathOperations.length);
         final MathOperation mathOperation = mathOperations[operationSelector];
-        boolean isRepresentationChanged = mathOperation.isRandomRepresented() && random.nextBoolean();
+        final boolean isRepresentationChanged = mathOperation.isRandomRepresented() && random.nextBoolean();
 
         return new SMExpression(
                 new SMRandomNumber(random, mathOperation.getFirstNumberBound(),
