@@ -15,11 +15,16 @@ import static pl.allegro.finance.tradukisto.ValueConverters.*;
 
 public class MathTeaser {
 
+    private static final int logicalNumberBound = 9;
+
     private static final MathOperation[] mathOperations = {
-            new MathOperation(ADDITION, 1000, 1000, true),
-            new MathOperation(SUBTRACTION, 1000, 1000, true),
-            new MathOperation(MULTIPLICATION, 20, 10, true),
-            new MathOperation(DIVISION, 150, 10, true)
+            new MathOperation(ADDITION, 1500, 1500, false),
+            new MathOperation(SUBTRACTION, 1500, 1500, false),
+            new MathOperation(MULTIPLICATION, 20, 20, false),
+            new MathOperation(DIVISION, 150, 10, false),
+            new MathOperation(LOGICAL_AND, logicalNumberBound, logicalNumberBound, false),
+            new MathOperation(LOGICAL_OR, logicalNumberBound, logicalNumberBound, false),
+            new MathOperation(LOGICAL_XOR, logicalNumberBound, logicalNumberBound, false)
     };
 
     private static final ValueConverters[] valueConverters = {ENGLISH_INTEGER, RUSSIAN_INTEGER, POLISH_INTEGER};
