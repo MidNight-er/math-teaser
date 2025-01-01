@@ -15,16 +15,17 @@ import static pl.allegro.finance.tradukisto.ValueConverters.*;
 
 public class MathTeaser {
 
-    private static final int logicalNumberBound = 9;
+    private static final int logicalNumberBound = 16;
+    private static final int additionAndSubtractionBound = 5000;
 
     private static final MathOperation[] mathOperations = {
-            new MathOperation(ADDITION, 1500, 1500, false),
-            new MathOperation(SUBTRACTION, 1500, 1500, false),
-            new MathOperation(MULTIPLICATION, 20, 20, false),
-            new MathOperation(DIVISION, 150, 10, false),
-            new MathOperation(LOGICAL_AND, logicalNumberBound, logicalNumberBound, false),
-            new MathOperation(LOGICAL_OR, logicalNumberBound, logicalNumberBound, false),
-            new MathOperation(LOGICAL_XOR, logicalNumberBound, logicalNumberBound, false)
+            new MathOperation(ADDITION, additionAndSubtractionBound, additionAndSubtractionBound, true, false),
+            new MathOperation(SUBTRACTION, additionAndSubtractionBound, additionAndSubtractionBound, true,  false),
+            new MathOperation(MULTIPLICATION, 30, 30, true, false),
+            new MathOperation(DIVISION, 150, 10, true, false),
+            new MathOperation(LOGICAL_AND, logicalNumberBound, logicalNumberBound, false, false),
+            new MathOperation(LOGICAL_OR, logicalNumberBound, logicalNumberBound, false, false),
+            new MathOperation(LOGICAL_XOR, logicalNumberBound, logicalNumberBound, false, false)
     };
 
     private static final ValueConverters[] valueConverters = {ENGLISH_INTEGER, RUSSIAN_INTEGER, POLISH_INTEGER};
@@ -58,11 +59,13 @@ public class MathTeaser {
         final int operationSelector = random.nextInt(mathOperations.length);
         final MathOperation mathOperation = mathOperations[operationSelector];
         final boolean isRepresentationChanged = mathOperation.isRandomRepresented() && random.nextBoolean();
+        final boolean isFirstNumberNegative = mathOperation.isNegative() && !isRepresentationChanged && random.nextBoolean();
+        final boolean isSecondNumberNegative = mathOperation.isNegative() && !isRepresentationChanged && random.nextBoolean();
 
         return new SMExpression(
-                new SMRandomNumber(random, mathOperation.getFirstNumberBound(),
+                new SMRandomNumber(random, mathOperation.getFirstNumberBound(), isFirstNumberNegative,
                         isRepresentationChanged ? valueConverters[languageSelector] : null),
-                new SMRandomNumber(random, mathOperation.getSecondNumberBound(),
+                new SMRandomNumber(random, mathOperation.getSecondNumberBound(), isSecondNumberNegative,
                         isRepresentationChanged ? valueConverters[languageSelector] : null),
                 new SMOperation(mathOperation.getType(), null)
         );
