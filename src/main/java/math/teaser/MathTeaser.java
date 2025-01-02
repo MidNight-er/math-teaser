@@ -22,7 +22,7 @@ public class MathTeaser {
             new MathOperation(ADDITION, additionAndSubtractionBound, additionAndSubtractionBound, true, false),
             new MathOperation(SUBTRACTION, additionAndSubtractionBound, additionAndSubtractionBound, true,  false),
             new MathOperation(MULTIPLICATION, 30, 30, true, false),
-            new MathOperation(DIVISION, 150, 10, true, false),
+            new MathOperation(DIVISION, 150, 10, false, false),
             new MathOperation(LOGICAL_AND, logicalNumberBound, logicalNumberBound, false, false),
             new MathOperation(LOGICAL_OR, logicalNumberBound, logicalNumberBound, false, false),
             new MathOperation(LOGICAL_XOR, logicalNumberBound, logicalNumberBound, false, false)
