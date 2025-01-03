@@ -12,26 +12,26 @@ public class MathOperationSubtractionTest {
 
     @Test
     void subtractTwoPositiveNumbersTest() {
-        int difference = Integer.parseInt(SUBTRACTION.apply(2, 2));
-        assertEquals(0, difference);
+        int difference = Integer.parseInt(SUBTRACTION.apply(4, 2));
+        assertEquals(2, difference);
     }
 
     @Test
     void subtractPositiveAndNegativeNumbersTest() {
-        int difference = Integer.parseInt(SUBTRACTION.apply(2, -2));
-        assertEquals(4, difference);
+        int difference = Integer.parseInt(SUBTRACTION.apply(4, -2));
+        assertEquals(6, difference);
     }
 
     @Test
     void subtractNegativeAndPositiveNumbersTest() {
-        int difference = Integer.parseInt(SUBTRACTION.apply(-2, 2));
-        assertEquals(-4, difference);
+        int difference = Integer.parseInt(SUBTRACTION.apply(-4, 2));
+        assertEquals(-6, difference);
     }
 
     @Test
     void subtractTwoNegativeNumbersTest() {
-        int difference = Integer.parseInt(SUBTRACTION.apply(-2, -2));
-        assertEquals(0, difference);
+        int difference = Integer.parseInt(SUBTRACTION.apply(-4, -2));
+        assertEquals(-2, difference);
     }
 
 }

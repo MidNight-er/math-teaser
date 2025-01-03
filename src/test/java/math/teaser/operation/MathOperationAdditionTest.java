@@ -12,25 +12,25 @@ public class MathOperationAdditionTest {
 
     @Test
     void addTwoPositiveNumbersTest() {
-        int sum = Integer.parseInt(ADDITION.apply(2, 2));
-        assertEquals(4, sum);
+        int sum = Integer.parseInt(ADDITION.apply(4, 2));
+        assertEquals(6, sum);
     }
 
     @Test
     void addPositiveAndNegativeNumbersTest() {
-        int sum = Integer.parseInt(ADDITION.apply(2, -2));
-        assertEquals(0, sum);
+        int sum = Integer.parseInt(ADDITION.apply(4, -2));
+        assertEquals(2, sum);
     }
 
     @Test
     void addNegativeAndPositiveNumbersTest() {
-        int sum = Integer.parseInt(ADDITION.apply(-2, 2));
-        assertEquals(0, sum);
+        int sum = Integer.parseInt(ADDITION.apply(-4, 2));
+        assertEquals(-2, sum);
     }
 
     @Test
     void addTwoNegativeNumbersTest() {
-        int sum = Integer.parseInt(ADDITION.apply(-2, -2));
-        assertEquals(-4, sum);
+        int sum = Integer.parseInt(ADDITION.apply(-4, -2));
+        assertEquals(-6, sum);
     }
 }
