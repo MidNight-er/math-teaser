@@ -13,41 +13,33 @@ public class MathOperationMultiplicationTest {
 
     @Test
     void multiplyTwoPositiveNumbersTest() {
-        int product1 = Integer.parseInt(MULTIPLICATION.apply(4, 2));
-        int product2 = Integer.parseInt(MULTIPLICATION.apply(2, 4));
         assertAll(
-                () -> assertEquals(8, product1),
-                () -> assertEquals(8, product2)
+                () -> assertEquals(8, Integer.parseInt(MULTIPLICATION.apply(4, 2))),
+                () -> assertEquals(8, Integer.parseInt(MULTIPLICATION.apply(2, 4)))
         );
     }
 
     @Test
     void multiplyPositiveAndNegativeNumbersTest() {
-        int product1 = Integer.parseInt(MULTIPLICATION.apply(4, -2));
-        int product2 = Integer.parseInt(MULTIPLICATION.apply(-2, 4));
         assertAll(
-                () -> assertEquals(-8, product1),
-                () -> assertEquals(-8, product2)
+                () -> assertEquals(-8, Integer.parseInt(MULTIPLICATION.apply(4, -2))),
+                () -> assertEquals(-8, Integer.parseInt(MULTIPLICATION.apply(-2, 4)))
         );
     }
 
     @Test
     void multiplyNegativeAndPositiveNumbersTest() {
-        int product1 = Integer.parseInt(MULTIPLICATION.apply(-4, 2));
-        int product2 = Integer.parseInt(MULTIPLICATION.apply(2, -4));
         assertAll(
-                () -> assertEquals(-8, product1),
-                () -> assertEquals(-8, product2)
+                () -> assertEquals(-8, Integer.parseInt(MULTIPLICATION.apply(-4, 2))),
+                () -> assertEquals(-8, Integer.parseInt(MULTIPLICATION.apply(2, -4)))
         );
     }
 
     @Test
     void multiplyTwoNegativeNumbersTest() {
-        int product1 = Integer.parseInt(MULTIPLICATION.apply(-4, -2));
-        int product2 = Integer.parseInt(MULTIPLICATION.apply(-2, -4));
         assertAll(
-                () -> assertEquals(8, product1),
-                () -> assertEquals(8, product2)
+                () -> assertEquals(8, Integer.parseInt(MULTIPLICATION.apply(-4, -2))),
+                () -> assertEquals(8, Integer.parseInt(MULTIPLICATION.apply(-2, -4)))
         );
     }
 }

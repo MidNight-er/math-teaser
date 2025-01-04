@@ -13,41 +13,33 @@ public class MathOperationAdditionTest {
 
     @Test
     void addTwoPositiveNumbersTest() {
-        int sum1 = Integer.parseInt(ADDITION.apply(4, 2));
-        int sum2 = Integer.parseInt(ADDITION.apply(2, 4));
         assertAll(
-                () -> assertEquals(6, sum1),
-                () -> assertEquals(6, sum2)
+                () -> assertEquals(6, Integer.parseInt(ADDITION.apply(4, 2))),
+                () -> assertEquals(6, Integer.parseInt(ADDITION.apply(2, 4)))
         );
     }
 
     @Test
     void addPositiveAndNegativeNumbersTest() {
-        int sum1 = Integer.parseInt(ADDITION.apply(4, -2));
-        int sum2 = Integer.parseInt(ADDITION.apply(-2, 4));
         assertAll(
-                () -> assertEquals(2, sum1),
-                () -> assertEquals(2, sum2)
+                () -> assertEquals(2, Integer.parseInt(ADDITION.apply(4, -2))),
+                () -> assertEquals(2, Integer.parseInt(ADDITION.apply(-2, 4)))
         );
     }
 
     @Test
     void addNegativeAndPositiveNumbersTest() {
-        int sum1 = Integer.parseInt(ADDITION.apply(-4, 2));
-        int sum2 = Integer.parseInt(ADDITION.apply(2, -4));
         assertAll(
-                () -> assertEquals(-2, sum1),
-                () -> assertEquals(-2, sum2)
+                () -> assertEquals(-2, Integer.parseInt(ADDITION.apply(-4, 2))),
+                () -> assertEquals(-2, Integer.parseInt(ADDITION.apply(2, -4)))
         );
     }
 
     @Test
     void addTwoNegativeNumbersTest() {
-        int sum1 = Integer.parseInt(ADDITION.apply(-4, -2));
-        int sum2 = Integer.parseInt(ADDITION.apply(-2, -4));
         assertAll(
-                () -> assertEquals(-6, sum1),
-                () -> assertEquals(-6, sum2)
+                () -> assertEquals(-6, Integer.parseInt(ADDITION.apply(-4, -2))),
+                () -> assertEquals(-6, Integer.parseInt(ADDITION.apply(-2, -4)))
         );
     }
 }
