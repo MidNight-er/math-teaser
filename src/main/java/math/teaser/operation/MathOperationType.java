@@ -18,19 +18,19 @@ public enum MathOperationType {
 
     MULTIPLICATION("*") {
         @Override
-        public String apply(int number1, int number2) {
-            return String.valueOf(Math.multiplyExact(number1, number2));
+        public String apply(int multiplier, int multiplicand) {
+            return String.valueOf(Math.multiplyExact(multiplier, multiplicand));
         }
     },
 
     DIVISION("/") {
         @Override
-        public String apply(int number1, int number2) {
-            if (number1 < number2 || number1 % number2 == 0) {
-                return String.valueOf(Math.divideExact(number1, number2));
+        public String apply(int dividend, int divisor) {
+            if (dividend % divisor == 0) {
+                return String.valueOf(Math.divideExact(dividend, divisor));
             } else {
-                int remainder = number1 % number2;
-                return Math.divideExact(number1 - remainder, number2) + "R" + remainder;
+                final int remainder = dividend % divisor;
+                return Math.divideExact(dividend - remainder, divisor) + "R" + remainder;
             }
         }
     },
