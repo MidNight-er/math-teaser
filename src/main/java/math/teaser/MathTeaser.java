@@ -17,12 +17,13 @@ public class MathTeaser {
 
     private static final int logicalNumberBound = 16;
     private static final int additionAndSubtractionBound = 5000;
+    private static final int multiplicationBound = 40;
 
     private static final MathOperation[] mathOperations = {
             new MathOperation(ADDITION, additionAndSubtractionBound, additionAndSubtractionBound, true, false),
             new MathOperation(SUBTRACTION, additionAndSubtractionBound, additionAndSubtractionBound, true,  false),
-            new MathOperation(MULTIPLICATION, 30, 30, true, false),
-            new MathOperation(DIVISION, 150, 10, false, false),
+            new MathOperation(MULTIPLICATION, multiplicationBound, multiplicationBound, true, false),
+            new MathOperation(DIVISION, 150, 10, true, false),
             new MathOperation(LOGICAL_AND, logicalNumberBound, logicalNumberBound, false, false),
             new MathOperation(LOGICAL_OR, logicalNumberBound, logicalNumberBound, false, false),
             new MathOperation(LOGICAL_XOR, logicalNumberBound, logicalNumberBound, false, false)

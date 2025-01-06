@@ -24,20 +24,32 @@ public class MathOperationDivisionTest {
 
     @Test
     void dividePositiveAndNegativeNumbersTest() {
-        int quotient = Integer.parseInt(DIVISION.apply(4, -2));
-        assertEquals(-2, quotient);
+        assertAll(
+                () -> assertEquals(-2, Integer.parseInt(DIVISION.apply(4, -2))),
+                () -> assertArrayEquals(new int[] {0, -2}, getQuotientAndReminder(-2, 4)),
+                () -> assertArrayEquals(new int[] {-2, 1}, getQuotientAndReminder(5, -2)),
+                () -> assertArrayEquals(new int[] {0, -2}, getQuotientAndReminder(-2, 5))
+        );
     }
 
     @Test
     void divideNegativeAndPositiveNumbersTest() {
-        int quotient = Integer.parseInt(DIVISION.apply(-4, 2));
-        assertEquals(-2, quotient);
+        assertAll(
+                () -> assertEquals(-2, Integer.parseInt(DIVISION.apply(-4, 2))),
+                () -> assertArrayEquals(new int[] {0, 2}, getQuotientAndReminder(2, -4)),
+                () -> assertArrayEquals(new int[] {-2, -1}, getQuotientAndReminder(-5, 2)),
+                () -> assertArrayEquals(new int[] {0, 2}, getQuotientAndReminder(2, -5))
+        );
     }
 
     @Test
     void divideTwoNegativeNumbersTest() {
-        int quotient = Integer.parseInt(DIVISION.apply(-4, -2));
-        assertEquals(2, quotient);
+        assertAll(
+                () -> assertEquals(2, Integer.parseInt(DIVISION.apply(-4, -2))),
+                () -> assertArrayEquals(new int[] {0, -2}, getQuotientAndReminder(-2, -4)),
+                () -> assertArrayEquals(new int[] {2, -1}, getQuotientAndReminder(-5, -2)),
+                () -> assertArrayEquals(new int[] {0, -2}, getQuotientAndReminder(-2, -5))
+        );
     }
 
     private static int[] getQuotientAndReminder(int dividend, int divisor) {
