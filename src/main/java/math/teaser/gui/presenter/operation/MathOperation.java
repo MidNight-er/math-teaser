@@ -1,4 +1,4 @@
-package math.teaser.mvc.presenter.operation;
+package math.teaser.gui.presenter.operation;
 
 public class MathOperation {
 

@@ -3,9 +3,9 @@ package math.teaser;
 import java.awt.*;
 import javax.swing.*;
 
-import math.teaser.mvc.presenter.SMPresenter;
-import math.teaser.mvc.view.MainFrame;
-import math.teaser.mvc.view.SMPanelView;
+import math.teaser.gui.presenter.SMPresenter;
+import math.teaser.gui.view.MainFrame;
+import math.teaser.gui.view.SMPanelView;
 
 public class MathTeaser {
 

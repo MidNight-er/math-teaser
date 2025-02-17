@@ -1,20 +1,20 @@
-package math.teaser.mvc.presenter;
+package math.teaser.gui.presenter;
 
 import java.util.Random;
 
-import math.teaser.mvc.presenter.number.SMRandomNumber;
-import math.teaser.mvc.presenter.operation.MathOperation;
-import math.teaser.mvc.presenter.operation.SMOperation;
-import math.teaser.mvc.view.SMPanelView;
+import math.teaser.gui.presenter.number.SMRandomNumber;
+import math.teaser.gui.presenter.operation.MathOperation;
+import math.teaser.gui.presenter.operation.SMOperation;
+import math.teaser.gui.view.SMPanelView;
 import pl.allegro.finance.tradukisto.ValueConverters;
 
-import static math.teaser.mvc.presenter.operation.MathOperationType.ADDITION;
-import static math.teaser.mvc.presenter.operation.MathOperationType.DIVISION;
-import static math.teaser.mvc.presenter.operation.MathOperationType.LOGICAL_AND;
-import static math.teaser.mvc.presenter.operation.MathOperationType.LOGICAL_OR;
-import static math.teaser.mvc.presenter.operation.MathOperationType.LOGICAL_XOR;
-import static math.teaser.mvc.presenter.operation.MathOperationType.MULTIPLICATION;
-import static math.teaser.mvc.presenter.operation.MathOperationType.SUBTRACTION;
+import static math.teaser.gui.presenter.operation.MathOperationType.ADDITION;
+import static math.teaser.gui.presenter.operation.MathOperationType.DIVISION;
+import static math.teaser.gui.presenter.operation.MathOperationType.LOGICAL_AND;
+import static math.teaser.gui.presenter.operation.MathOperationType.LOGICAL_OR;
+import static math.teaser.gui.presenter.operation.MathOperationType.LOGICAL_XOR;
+import static math.teaser.gui.presenter.operation.MathOperationType.MULTIPLICATION;
+import static math.teaser.gui.presenter.operation.MathOperationType.SUBTRACTION;
 import static pl.allegro.finance.tradukisto.ValueConverters.ENGLISH_INTEGER;
 import static pl.allegro.finance.tradukisto.ValueConverters.POLISH_INTEGER;
 import static pl.allegro.finance.tradukisto.ValueConverters.RUSSIAN_INTEGER;

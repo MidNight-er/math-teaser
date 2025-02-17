@@ -1,4 +1,4 @@
-package math.teaser.mvc.view;
+package math.teaser.gui.view;
 
 import java.awt.*;
 import javax.swing.*;

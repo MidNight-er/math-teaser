@@ -1,8 +1,8 @@
-package math.teaser.mvc.presenter;
+package math.teaser.gui.presenter;
 
-import math.teaser.mvc.presenter.number.SMRandomNumber;
-import math.teaser.mvc.presenter.operation.MathOperationType;
-import math.teaser.mvc.presenter.operation.SMOperation;
+import math.teaser.gui.presenter.number.SMRandomNumber;
+import math.teaser.gui.presenter.operation.MathOperationType;
+import math.teaser.gui.presenter.operation.SMOperation;
 
 public class SMExpression {
 

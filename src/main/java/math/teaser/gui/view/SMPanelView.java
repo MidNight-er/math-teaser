@@ -1,4 +1,4 @@
-package math.teaser.mvc.view;
+package math.teaser.gui.view;
 
 public interface SMPanelView {
 
