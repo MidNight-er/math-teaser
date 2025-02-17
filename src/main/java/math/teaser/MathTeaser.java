@@ -1,230 +1,34 @@
 package math.teaser;
 
-import math.teaser.number.SMRandomNumber;
-import math.teaser.operation.MathOperation;
-import math.teaser.operation.SMOperation;
-import pl.allegro.finance.tradukisto.ValueConverters;
+import java.awt.*;
+import javax.swing.*;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Random;
-
-import static math.teaser.operation.MathOperationType.*;
-import static pl.allegro.finance.tradukisto.ValueConverters.*;
+import math.teaser.mvc.presenter.SMPresenter;
+import math.teaser.mvc.view.MainFrame;
+import math.teaser.mvc.view.SMPanelView;
 
 public class MathTeaser {
 
-    private static final int logicalNumberBound = 16;
-    private static final int additionAndSubtractionBound = 5000;
-    private static final int multiplicationBound = 40;
-
-    private static final MathOperation[] mathOperations = {
-            new MathOperation(ADDITION, additionAndSubtractionBound, additionAndSubtractionBound, true, false),
-            new MathOperation(SUBTRACTION, additionAndSubtractionBound, additionAndSubtractionBound, true,  false),
-            new MathOperation(MULTIPLICATION, multiplicationBound, multiplicationBound, true, false),
-            new MathOperation(DIVISION, 150, 10, true, false),
-            new MathOperation(LOGICAL_AND, logicalNumberBound, logicalNumberBound, false, false),
-            new MathOperation(LOGICAL_OR, logicalNumberBound, logicalNumberBound, false, false),
-            new MathOperation(LOGICAL_XOR, logicalNumberBound, logicalNumberBound, false, false)
-    };
-
-    private static final ValueConverters[] valueConverters = {ENGLISH_INTEGER, RUSSIAN_INTEGER, POLISH_INTEGER};
-    private static final Random random = new Random();
-
-    public static void main(String[] args) {
-        new MathTeaser().tease();
+    public static void main(String... args) {
+        new MathTeaser().initialize();
     }
 
-    private void tease() {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-            boolean showResult = false;
-            SMExpression expression = null;
-
-            do {
-                if (!showResult) {
-                    expression = calculate();
-                    System.out.print(expression.getRepresentation() + " = ");
-                } else {
-                    System.out.println(expression.getRepresentation() + " = " + expression.getResult());
-                }
-                showResult = !showResult;
-            } while (br.read() != 'q');
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private SMExpression calculate() {
-        final int languageSelector = random.nextInt(valueConverters.length);
-        final int operationSelector = random.nextInt(mathOperations.length);
-        final MathOperation mathOperation = mathOperations[operationSelector];
-        final boolean isRepresentationChanged = mathOperation.isRandomRepresented() && random.nextBoolean();
-        final boolean isFirstNumberNegative = mathOperation.isNegative() && !isRepresentationChanged && random.nextBoolean();
-        final boolean isSecondNumberNegative = mathOperation.isNegative() && !isRepresentationChanged && random.nextBoolean();
-
-        return new SMExpression(
-                new SMRandomNumber(random, mathOperation.getFirstNumberBound(), isFirstNumberNegative,
-                        isRepresentationChanged ? valueConverters[languageSelector] : null),
-                new SMRandomNumber(random, mathOperation.getSecondNumberBound(), isSecondNumberNegative,
-                        isRepresentationChanged ? valueConverters[languageSelector] : null),
-                new SMOperation(mathOperation.getType(), null)
-        );
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-
-            final Random random = new Random();
-            boolean showExpression = true;
-            int number1 = 0;
-            int number2 = 0;
-            int operation = 0;
-            int result = 0;
-            LocalTime localTime = LocalTime.now();
-            boolean isConvertTo = true;
-            do {
-                if (showExpression) {
-                    number1 = generateNumber(random, 139, 10);
-                    number2 = generateNumber(random, 139, 10 );
-                    operation = random.nextInt(2);
-                    switch (operation) {
-                        case 0:
-                            result = addition(number1, number2);
-                            System.out.print(number1 + " + " + number2 + " = ");
-                            break;
-                        case 1:
-                            result = subtract(number1, number2);
-                            System.out.print(number1 + " - " + number2 + " = ");
-                            break;
-                        case 2:
-                            number1 = generateNumber(random, 16, 2);
-                            number2 = generateNumber(random, 14, 7);
-                            result = multiply(number1, number2);
-                            System.out.print(number1 + " * " + number2 + " = ");
-                            break;
-                        case 3:
-                            number1 = generateNumber(random, 80, 11 );
-                            number2 = generateNumber(random, 12, 2);
-                            if (Math.abs(number1) < Math.abs(number2)) {
-                                int tmp = number1;
-                                number1 = number2;
-                                number2 = tmp;
-                            }
-                            final int modulus = modulus(number1, number2);
-                            if (modulus != 0) {
-                                result = division(number1 - modulus, number2);
-                            } else {
-                                result = division(number1, number2);
-                            }
-                            System.out.print(number1 + " / " + number2 + " = ");
-                            break;
-                        case 4:
-                            number1 = Math.abs(generateNumber(random, 600,  2));
-                            number2 = Math.abs(generateNumber(random, 600,  2));
-                            localTime = LocalTime.ofSecondOfDay(number1).plusSeconds(number2);
-                            System.out.print(LocalTime.ofSecondOfDay(number1) + " + " + LocalTime.ofSecondOfDay(number2) + " = ");
-                            break;
-                        case 5:
-                            number1 = convert(random, 100, 10);
-                            isConvertTo = random.nextBoolean();
-                            if (isConvertTo) {
-                                System.out.print(number1 + " to 0x" + " = ");
-                            } else {
-                                System.out.print("0x" + Integer.toHexString(number1).toUpperCase() + " = ");
-                            }
-                            break;
-                        case 6:
-                            // devide number to consist of multiple numbers, ad comparison. (for example one number
-                            // has to be less than, other more than)
+    public void initialize() {
+        EventQueue.invokeLater(() -> {
+            try {
+                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                    if ("Nimbus".equals(info.getName())) {
+                        UIManager.setLookAndFeel(info.getClassName());
+                        break;
                     }
-
-                    showExpression = false;
-                } else {
-                    switch (operation) {
-                        case 0:
-                            System.out.print(number1 + " + " + number2 + " = " + result + "\n");
-                            break;
-                        case 1:
-                            System.out.print(number1 + " - " + number2 + " = " + result + "\n");
-                            break;
-                        case 2:
-                            System.out.print(number1 + " * " + number2 + " = " + result + "\n");
-                            break;
-                        case 3:
-                            final int modulus = modulus(number1, number2);
-                            if (modulus != 0) {
-                                System.out.print(number1 + " / " + number2 + " = " + result + "; remainder = " + modulus + "\n");
-                            } else {
-                                System.out.print(number1 + " / " + number2 + " = " + result + "\n");
-                            }
-                            break;
-                        case 4:
-                            System.out.print(LocalTime.ofSecondOfDay(number1) + " + " + LocalTime.ofSecondOfDay(number2) + " = " + localTime + "\n");
-                            break;
-                        case 5:
-                            if (isConvertTo) {
-                                System.out.print(number1 + " to 0x" + " = 0x" + Integer.toHexString(number1).toUpperCase() + "\n");
-                            } else {
-                                System.out.print("0x" + Integer.toHexString(number1).toUpperCase() + " = " + number1 + "\n");
-                            }
-                            break;
-                    }
-
-                    showExpression = true;
                 }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        });
 
-            } while (br.read() != 'q');
-
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-
+        MainFrame mainFrame = new MainFrame("math-teaser");
+        SMPanelView centralPanelView = mainFrame.getCentralPanelView();
+        new SMPresenter(centralPanelView);
     }
-
-    private int generateNumber(Random random, int bound, int offset) {
-        int number = random.nextInt(bound) + offset;
-        return random.nextBoolean() ? Math.negateExact(number) : number;
-    }
-
-    private int division(int number1, int number2) {
-        return number1 / number2;
-    }
-
-    private int multiply(int number1, int number2) {
-        return number1 * number2;
-    }
-
-    private int addition(int number1, int number2) {
-        return number1 + number2;
-    }
-
-    private int subtract(int number1, int number2) {
-        return number1 - number2;
-    }
-
-    private int convert(Random random, int bound, int offset) {
-        return random.nextInt(bound) + offset;
-    }
-
-    private int modulus(int number1, int number2) {
-        return number1 % number2;
-    }
-
- */
-
 }

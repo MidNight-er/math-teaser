@@ -1,4 +1,4 @@
-package math.teaser.number;
+package math.teaser.mvc.presenter.number;
 
 import pl.allegro.finance.tradukisto.ValueConverters;
 
